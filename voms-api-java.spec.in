@@ -21,7 +21,6 @@ BuildRequires:  jpackage-utils
 BuildRequires:  java-devel
 
 Requires:       jpackage-utils
-Requires:       slf4j
 Requires:       canl-java
 Requires:       %{bcmail_package}
 Requires:       java
