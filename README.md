@@ -20,6 +20,7 @@ in the source tarball included in the source rpm. This parameter is necessary
 to be able to use snaspshot dependencies and succeed in an ETICS mock repackaging step.
 If no value is given, the default maven mirror @ CNAF is used. To use the CERN maven
 mirror you can use the following value:
+
 ```bash
   make tag=3.x mirror_conf_url=https://raw.github.com/italiangrid/build-settings/master/maven/cern-mirror-settings.xml
 ```
