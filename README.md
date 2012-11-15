@@ -12,10 +12,15 @@ willing to build.
 
 ## Other packaging parameters
 
-- `bcmail_package` : the name of the bcmail package dependency. The default
+- bcmail_package : the name of the bcmail package dependency. The default
 is the SL6 name, i.e. bouncycastle-mail. Set this to `bouncycastle146-mail` 
-when building on SL5.
-- `mirror_conf_url` : a URL pointing to a maven settings file that will be included
+when building on SL5. Example:
+
+```bash
+  make tag=3.x bcmail_package=bouncycastle146-mail
+```
+
+- mirror_conf_url : a URL pointing to a maven settings file that will be included
 in the source tarball included in the source rpm. This parameter is necessary
 to be able to use snaspshot dependencies and succeed in an ETICS mock repackaging step.
 If no value is given, the default maven mirror @ CNAF is used. To use the CERN maven
