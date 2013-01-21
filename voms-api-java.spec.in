@@ -4,7 +4,7 @@
 %global orig_name voms-api-java
 
 Name: voms-api-java3
-Version: 3.0
+Version: 3.0.0
 Release: 1%{?dist}
 Summary: The Virtual Organisation Membership Service Java APIs
 
