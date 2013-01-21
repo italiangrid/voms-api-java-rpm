@@ -18,12 +18,12 @@ BuildArch:	noarch
 
 BuildRequires:  maven
 BuildRequires:  jpackage-utils
-BuildRequires:  java-devel
+BuildRequires:  java-1.6.0-openjdk-devel
 
 Requires:       jpackage-utils
 Requires:       canl-java
 Requires:       %{bcmail_package}
-Requires:       java
+Requires:       java-1.6.0-openjdk
 
 %description
 The Virtual Organization Membership Service (VOMS) is an attribute authority
