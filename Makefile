@@ -1,4 +1,5 @@
 name=voms-api-java
+tag=3.x
 
 # the GitHub repo where source tarball will be fetched from
 git=https://github.com/italiangrid/voms-api-java.git
@@ -25,6 +26,8 @@ mirror_conf_url=https://raw.github.com/italiangrid/build-settings/master/maven/c
 mirror_conf_name=mirror-settings.xml
 
 mvn_settings=-s $(mirror_conf_name)
+
+dist=.sl6
 
 .PHONY: clean rpm
 
@@ -61,7 +64,7 @@ rpm: print-info prepare-spec
                  $(rpmbuild_dir)/SPECS \
 		 $(rpmbuild_dir)/SRPMS
 	@cp $(source_dir)/$(name).tar.gz $(rpmbuild_dir)/SOURCES/$(name)3-$(rpm_version).tar.gz
-	rpmbuild --nodeps -v -ba $(spec) --define "_topdir $(rpmbuild_dir)"
+	rpmbuild --nodeps -v -ba $(spec) --define "_topdir $(rpmbuild_dir)" --define "dist $(dist)"
 
 clean:
 	@rm -rf $(source_dir) $(rpmbuild_dir) $(spec)
