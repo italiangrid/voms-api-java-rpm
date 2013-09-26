@@ -1,5 +1,5 @@
 name=voms-api-java
-tag=3.x
+tag=develop
 
 # the GitHub repo where source tarball will be fetched from
 git=https://github.com/italiangrid/voms-api-java.git
