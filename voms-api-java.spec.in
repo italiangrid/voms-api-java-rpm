@@ -21,7 +21,7 @@ BuildRequires:  jpackage-utils
 BuildRequires:  java-1.6.0-openjdk-devel
 
 Requires:       jpackage-utils
-Requires:       canl-java
+Requires:       canl-java >= 1.3
 Requires:       %{bcmail_package}
 Requires:       java-1.6.0-openjdk
 
