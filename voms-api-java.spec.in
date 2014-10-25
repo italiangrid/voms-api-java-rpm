@@ -4,7 +4,7 @@
 %global orig_name voms-api-java
 
 Name: voms-api-java3
-Version: 3.0.2
+Version: 3.0.4
 Release: 1%{?dist}
 Summary: The Virtual Organisation Membership Service Java APIs
 
@@ -16,7 +16,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:	noarch
 
-BuildRequires:  maven
+BuildRequires:  apache-maven
 BuildRequires:  jpackage-utils
 BuildRequires:  java-1.6.0-openjdk-devel
 
@@ -49,20 +49,20 @@ Virtual Organization Membership Service (VOMS) Java API Documentation.
 %setup -q -n voms-api-java
 
 %build
-mvn %{?mvn_settings} -U -Dmaven.test.skip=true -B clean javadoc:javadoc assembly:assembly
+mvn %{?mvn_settings} -U -Dmaven.test.skip=true clean package
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT
-tar -C $RPM_BUILD_ROOT -xvzf target/%{orig_name}.tar.gz
+rm -rf %{buildroot} 
+mkdir -p %{buildroot}%{_javadir}
+mkdir -p %{buildroot}%{_javadocdir}/%{name}-%{pom_version}
 
-ln -s %{orig_name}-%{pom_version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
-
-mv $RPM_BUILD_ROOT%{_javadocdir}/%{orig_name} $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{pom_version}
-ln -s %{name}-%{pom_version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
+install -m 644 target/%{orig_name}-%{pom_version}.jar -t %{buildroot}%{_javadir}
+ln -s %{orig_name}-%{pom_version}.jar %{buildroot}%{_javadir}/%{name}.jar
+cp -r target/javadoc/* %{buildroot}%{_javadocdir}/%{name}-%{pom_version}
+ln -s %{name}-%{pom_version} %{buildroot}%{_javadocdir}/%{name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
@@ -78,6 +78,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_javadocdir}/%{name}-%{pom_version}
 
 %changelog
+
+* Thu Dec 19 2013 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 3.0.4-1
+- Fix for https://issues.infn.it/browse/VOMS-455
+- Caching certificate validator
+- Refactored certificate validator builder
+- Less stringent mutual exclusion on default AC parser and validator
+
 * Thu Sep 26 2013 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 3.0.2-1
 - Fix for https://issues.infn.it/browse/VOMS-424
 - Adoption of CANL 1.3.0
