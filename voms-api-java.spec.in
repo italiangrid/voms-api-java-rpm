@@ -5,7 +5,7 @@
 
 Name: voms-api-java3
 Version: 3.0.5
-Release: 0%{?dist}
+Release: 1%{?dist}
 Summary: The Virtual Organisation Membership Service Java APIs
 
 Group: System Environment/Libraries
@@ -78,6 +78,8 @@ rm -rf %{buildroot}
 %doc %{_javadocdir}/%{name}-%{pom_version}
 
 %changelog
+* Thu Dec 10 2014 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 3.0.5-1
+- Bumped packaging for 3.0.5 version
 
 * Thu Dec 19 2013 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 3.0.4-1
 - Fix for https://issues.infn.it/browse/VOMS-455
